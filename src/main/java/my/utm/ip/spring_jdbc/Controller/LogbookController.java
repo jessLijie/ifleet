@@ -61,7 +61,7 @@ public class LogbookController {
         if ("driver".equals(role)) {
         sql = "SELECT * FROM logbook WHERE driverName = 'Luka'";
         } else if ("manager".equals(role)) {
-        sql = "SELECT * FROM logbook";
+            return new ModelAndView("redirect:/logbook/manager");
         } else {
         // Handle other roles or invalid role
         mv.addObject("result", "Invalid role");
@@ -74,6 +74,17 @@ public class LogbookController {
         return mv;
     }
 
+    @RequestMapping("/manager")
+    public ModelAndView managerView(){
+        ModelAndView mv = new ModelAndView("viewLogbookEntry");
+        mv.addObject("role", "manager");
+        String sql = "SELECT * FROM logbook";
+        List<Logbook> logbookList;
+        logbookList = template.query(sql, new BeanPropertyRowMapper<>(Logbook.class));
+        mv.addObject("logbookList", logbookList);
+        return mv;
+    }
+
     @RequestMapping("/edit/{logbookID}")
     public ModelAndView edit(@PathVariable Long logbookID) {
         ModelAndView mv = new ModelAndView("editLogbookEntry");
@@ -81,7 +92,25 @@ public class LogbookController {
         // Use a parameterized query to filter records based on logbookID
         String sql = "SELECT * FROM logbook WHERE logbookID = ?";
         final List<Map<String, Object>> rows = template.queryForList(sql, logbookID);
+        mv.addObject("role", "driver");
+        // Check if any records were found
+        if (!rows.isEmpty()) {
+            // Access the first row (assuming logbookID is unique)
+            Map<String, Object> logbook = rows.get(0);
+            mv.addObject("logbook", logbook);
+        }
 
+        return mv;
+    }
+
+    @RequestMapping("/view/{logbookID}")
+    public ModelAndView view(@PathVariable Long logbookID) {
+        ModelAndView mv = new ModelAndView("editLogbookEntry");
+
+        // Use a parameterized query to filter records based on logbookID
+        String sql = "SELECT * FROM logbook WHERE logbookID = ?";
+        final List<Map<String, Object>> rows = template.queryForList(sql, logbookID);
+        mv.addObject("role", "manager");
         // Check if any records were found
         if (!rows.isEmpty()) {
             // Access the first row (assuming logbookID is unique)
@@ -154,7 +183,7 @@ public class LogbookController {
     public ModelAndView modified() {
         ModelAndView mv = new ModelAndView("viewLogbookEntry");
         mv.addObject("title", "List Records");
-        
+        mv.addObject("role", "driver");
         String sql = "SELECT * FROM logbook WHERE driverName = 'Luka'";
         List<Logbook> logbookList;
         logbookList = template.query(sql, new BeanPropertyRowMapper<>(Logbook.class));

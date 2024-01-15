@@ -86,13 +86,23 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               <td>${logbook.date}</td>
               <td>${logbook.petrol}</td>
               <td>
+                <c:if  test="${role eq 'driver'}">
                 <a href="edit/${logbook.logbookID}"
                   ><i
                     class="fa fa-eye"
                     aria-hidden="true"
                     style="color: forestgreen"
                   ></i
-                ></a>
+                ></a></c:if>
+
+                <c:if  test="${role eq 'manager'}">
+                <a href="view/${logbook.logbookID}"
+                  ><i
+                    class="fa fa-eye"
+                    aria-hidden="true"
+                    style="color: forestgreen"
+                  ></i
+                ></a></c:if>
 
                 <c:if  test="${role eq 'driver'}">
                 <span>&nbsp</span>

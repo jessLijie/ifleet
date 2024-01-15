@@ -112,13 +112,13 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           </c:if>
         </table>
         <br />
-        
+        <c:if test="${role eq 'driver'}">
         <div style="margin-left: 280px;">
         <button type="submit" style="border-radius: 0.5rem" >Update <i
           class="fa fa-pencil"
           aria-hidden="true"
         ></i
-      ></button></div>
+      ></button></div></c:if>
       </form>
     </div>
   </body>
