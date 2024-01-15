@@ -58,12 +58,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
   <%@include file="navbar.jsp"%>
   <body>
     <div style="padding-left: 260px">
-      <c:if test="${not empty successMessage}">
-        <div class="alert alert-success">${successMessage}</div>
-      </c:if>
-
       <h1>Logbook Records</h1>
-
+      <c:if  test="${role eq 'driver'}">
+      <a href="insert"><button>+ Add Record</button></a></c:if>
       <table>
         <thead>
           <tr>
@@ -71,7 +68,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <th>Driver Name</th>
             <th>Type</th>
             <th>Date</th>
-            <th>Petrol</th>
+            <th>Petrol(RM)</th>
             <th>Action</th>
             <!-- <th>Campus Route</th>
                 <th>Reserved Dest</th>
@@ -91,20 +88,22 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               <td>
                 <a href="edit/${logbook.logbookID}"
                   ><i
-                    class="fa fa-pencil"
+                    class="fa fa-eye"
                     aria-hidden="true"
                     style="color: forestgreen"
                   ></i
                 ></a>
 
+                <c:if  test="${role eq 'driver'}">
                 <span>&nbsp</span>
-                <a href=""
+                <a href="delete/${logbook.logbookID}"
                   ><i
                     class="fa fa-trash"
                     aria-hidden="true"
                     style="color: red"
                   ></i
                 ></a>
+                </c:if>
               </td>
 
               <!-- <td>${logbook.campusRoute}</td>

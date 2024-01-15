@@ -1,10 +1,6 @@
+my\utm\ip\spring_jdbc\Config.class
 my\utm\ip\spring_jdbc\Controller\LogbookController.class
 my\utm\ip\spring_jdbc\Model\Logbook.class
-my\utm\ip\spring_jdbc\Sales.class
+my\utm\ip\spring_jdbc\Model\License.class
 my\utm\ip\spring_jdbc\Controller\LicenseController.class
 my\utm\ip\spring_jdbc\Controller\_Controller.class
-my\utm\ip\spring_jdbc\ProductController.class
-my\utm\ip\spring_jdbc\Config.class
-my\utm\ip\spring_jdbc\Model\License.class
-my\utm\ip\spring_jdbc\Product.class
-my\utm\ip\spring_jdbc\SalesController.class
