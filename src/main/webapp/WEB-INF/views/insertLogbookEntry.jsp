@@ -69,7 +69,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           </tr>
         </table>
         <div style="margin-left: 400px;margin-top: 25px;">
-        <button type="submit" style="border-radius: 0.5rem" >Submit <i
+        <button type="submit" style="border-radius: 0.5rem" onclick="showAlert()">Submit <i
           class="fa fa-paper-plane"
           aria-hidden="true"
         ></i
@@ -77,5 +77,10 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         </div>
       </form>
     </div>
+    <script>
+      function showAlert() {
+          alert("Inserted successfully");
+      }
+  </script>
   </body>
 </html>

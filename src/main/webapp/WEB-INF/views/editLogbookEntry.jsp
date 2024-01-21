@@ -114,12 +114,17 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <br />
         <c:if test="${role eq 'driver'}">
         <div style="margin-left: 280px;">
-        <button type="submit" style="border-radius: 0.5rem" >Update <i
+        <button type="submit" style="border-radius: 0.5rem" onclick="showAlert()" >Update <i
           class="fa fa-pencil"
           aria-hidden="true"
         ></i
       ></button></div></c:if>
       </form>
     </div>
+    <script>
+      function showAlert() {
+          alert("Updated successfully");
+      }
+  </script>
   </body>
 </html>
